@@ -1,16 +1,44 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('node:path');
+const { app, BrowserWindow, ipcMain } = require("electron");
+const path = require("node:path");
+const windowStateKeeper = require("electron-window-state");
+const { info } = require("node:console");
+const { title } = require("node:process");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require('electron-squirrel-startup')) {
+if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
+ipcMain.handle("getPageScreenshot", async (e, url) => {
+  let offscreenWindow = new BrowserWindow({
+    show: false,
+  });
+
+  let title;
+  let screenshot;
+
+  await offscreenWindow.loadURL(url);
+  screenshot = (await offscreenWindow.webContents.capturePage()).toDataURL();
+  title = offscreenWindow.webContents.getTitle();
+  offscreenWindow.close();
+  offscreenWindow = null;
+
+  return {title, url, screenshot};
+});
+
 const createWindow = () => {
+  let windowState = windowStateKeeper({
+    defaultHeight: 650,
+    defaultWidth: 500,
+  });
+
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    x: windowState.x,
+    y: windowState.y,
+    width: windowState.width,
+    height: windowState.height,
+
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
@@ -18,6 +46,8 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+
+  windowState.manage(mainWindow);
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
@@ -31,7 +61,7 @@ app.whenReady().then(() => {
 
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  app.on('activate', () => {
+  app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
     }
@@ -41,8 +71,8 @@ app.whenReady().then(() => {
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
     app.quit();
   }
 });
