@@ -1,8 +1,5 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
-const path = require("node:path");
+const { app, BrowserWindow, ipcMain, shell} = require("electron");
 const windowStateKeeper = require("electron-window-state");
-const { info } = require("node:console");
-const { title } = require("node:process");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -15,15 +12,18 @@ ipcMain.handle("getPageScreenshot", async (e, url) => {
   });
 
   let title;
-  let screenshot;
+  // let screenshot;
 
   await offscreenWindow.loadURL(url);
-  screenshot = (await offscreenWindow.webContents.capturePage()).toDataURL();
+  // screenshot = (await offscreenWindow.webContents.capturePage()).toDataURL();
   title = offscreenWindow.webContents.getTitle();
   offscreenWindow.close();
   offscreenWindow = null;
 
-  return {title, url, screenshot};
+  return {title, 
+    url,
+    //  screenshot
+    };
 });
 
 const createWindow = () => {
@@ -43,6 +43,10 @@ const createWindow = () => {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
   });
+
+  mainWindow.webContents.setWindowOpenHandler(({url}) => {
+    shell.openExternal(url);
+  })
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);

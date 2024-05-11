@@ -7,8 +7,8 @@ function Modal(params) {
       <input type="text" id="url" placeholder="Enter URL" value={url} onChange={onChange} />
       <button id="add-item" onClick={ async () => {
         let info = await window.myAPI.getScreenshot(url);
-        console.log('info is ', info);
         /// add to storage / state to build Item element from
+        params.onAddItem(info);
       }} >Add Item</button>
       <button id="close-modal" onClick={params.onCancel}>Cancel</button>
     </div>

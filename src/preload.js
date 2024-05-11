@@ -7,12 +7,5 @@ contextBridge.exposeInMainWorld("myAPI", {
   getScreenshot: async (url) => {
     console.log("sent message");
     return await ipcRenderer.invoke("getPageScreenshot", url);
-    // .then((result) => {
-    //     console.log(result);
-    //     return result;
-    // });
-
-    // console.log(info);
-    // return info;
   },
 });

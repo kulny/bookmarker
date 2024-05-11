@@ -1,23 +1,25 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { SearchBar } from "./search.jsx";
-import {ItemList } from "./itemList.jsx" 
+import { ItemList } from "./itemList.jsx";
 import { Modal } from "./modal.jsx";
 
 const root = createRoot(document.getElementById("root"));
 root.render(<App />);
 
-let storage = JSON.parse(localStorage.getItem('to-read-items')) || [];
+let storage = JSON.parse(localStorage.getItem("to-read-items")) || [];
 
 function App() {
-    const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = React.useState(false);
+  const [toReadItems, setToReadItems] = React.useState(storage);
 
-    
   return (
     <div>
-        <SearchBar onClick={openModal} />
-      <ItemList toReadItems={storage} />
-      {showModal ? <Modal onCancel={closeModal} onAddItem={addToReadItem} /> : null}
+      <SearchBar onClick={openModal} />
+      <ItemList toReadItems={toReadItems} />
+      {showModal ? (
+        <Modal onCancel={closeModal} onAddItem={addToReadItem} />
+      ) : null}
     </div>
   );
 
@@ -29,15 +31,19 @@ function App() {
     setShowModal(false);
   }
 
-  function addToReadItem(item, isNew = false) {
-    console.log('add read item')
-    console.log(item)
-    if (isNew) {
-        storage.push(item);
+  function addToReadItem(item) {
+    if (
+      !toReadItems.find((e) => {
+        e.url == item.url;
+      })
+    ) {
+      storage.push(item);
+      save();
     }
+    setToReadItems([...toReadItems, item]);
   }
 }
 
 function save() {
-    localStorage.setItem('to-read-items', JSON.stringify(storage));
+  localStorage.setItem("to-read-items", JSON.stringify(storage));
 }
