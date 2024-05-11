@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { SearchBar } from "./search.jsx";
 import { ItemList } from "./itemList.jsx";
 import { Modal } from "./modal.jsx";
+import './css/main.css'
 
 const root = createRoot(document.getElementById("root"));
 root.render(<App />);
@@ -14,7 +15,7 @@ function App() {
   const [toReadItems, setToReadItems] = React.useState(storage);
 
   return (
-    <div>
+    <div className="app">
       <SearchBar onClick={openModal} />
       <ItemList toReadItems={toReadItems} />
       {showModal ? (

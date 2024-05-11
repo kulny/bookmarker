@@ -34,6 +34,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@coreui/icons": "^3.0.1",
+    "@coreui/icons-react": "^2.2.1",
     "electron-squirrel-startup": "^1.0.0"
   }
 }

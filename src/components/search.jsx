@@ -5,8 +5,10 @@ function SearchBar(params) {
 
   return (
     <div>
-      <button id="show-modal" onClick={params.onClick}>+</button>
-      <input type="text" placeholder="search" id="search" value={searchVal} onChange={onChange} />
+      <div className="search-container">
+        <button id="show-modal" onClick={params.onClick}>+</button>
+        <input type="text" placeholder="search" id="search" value={searchVal} onChange={onChange} />
+      </div>
     </div>
   );
 

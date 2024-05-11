@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, shell} = require("electron");
+const { app, BrowserWindow, ipcMain, shell, session} = require("electron");
 const windowStateKeeper = require("electron-window-state");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -61,6 +61,13 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  session.defaultSession.protocol.registerFileProtocol('static', (request, callback) => {
+    const fileUrl = request.url.replace('static://', '');
+    const filePath = path.join(app.getAppPath(), '.webpack/renderer', fileUrl);
+    callback(filePath);
+  })
+
+
   createWindow();
 
   // On OS X it's common to re-create a window in the app when the

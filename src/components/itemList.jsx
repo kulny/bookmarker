@@ -3,8 +3,7 @@ import {Item} from './item.jsx';
 
 function ItemList(params) {
     return (
-        <div>
-            <Item title='test' />
+        <div className="item-list-container">
             {params.toReadItems.map((item) => {
                return <Item url={item.url} title={item.title} key={item.url} /> 
             })}
