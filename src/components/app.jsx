@@ -55,9 +55,11 @@ function App() {
   }
 
   function onDelete(url) {
+    console.log(storage, 'storage vals');
     const index = storage.findIndex((item)=>{
-      item.url == url;
+      return item.url == url;
     })
+console.log('tried to delete ', index, ' = ', url);
 
     storage.splice(index, 1);
 

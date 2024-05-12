@@ -8,14 +8,12 @@ if (require("electron-squirrel-startup")) {
 
 ipcMain.handle("getPageScreenshot", async (e, url) => {
   let offscreenWindow = new BrowserWindow({
-    // show: false,
+    show: false,
   });
 
   let title;
-  // let screenshot;
 
   await offscreenWindow.loadURL(url);
-  // screenshot = (await offscreenWindow.webContents.capturePage()).toDataURL();
   title = offscreenWindow.webContents.getTitle();
   let openGraphTitle = await offscreenWindow.webContents.executeJavaScript(
     `document.querySelector('meta[property="og:title"]').content;`
