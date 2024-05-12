@@ -13,18 +13,22 @@ a {
   background-color: #a5d7e8;
   border-radius: 20px 0px 0px 20px;
   display: flex;
+  flex-direction: column;
   padding-right: 0px;
   padding-bottom: 10px;
   margin-right: 0px;
+  padding-top: 10px;
   padding-left: 10px;
-  height: 80px;
+  min-height: 80px;
   align-items: center;
+  justify-content: center;
   min-width: 75vw;
 }
 
 .read-item-container h2 {
   margin: 0px;
   margin-right: 10px;
+
 }
 
 .app {
@@ -101,4 +105,8 @@ a {
 
 .read-item {
   display: flex;
+}
+
+.to-read-item-img {
+  width: 50%;
 }

@@ -47,9 +47,11 @@ function App() {
     ) {
       storage.push(item);
       save();
+      setToReadItems([...storage]);
     }
     console.log(toReadItems, 'before add new item')
-    setToReadItems([...toReadItems, item]);
+    console.log(item);
+    
   }
 
   function onDelete(url) {

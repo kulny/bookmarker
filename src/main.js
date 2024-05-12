@@ -8,7 +8,7 @@ if (require("electron-squirrel-startup")) {
 
 ipcMain.handle("getPageScreenshot", async (e, url) => {
   let offscreenWindow = new BrowserWindow({
-    show: false,
+    // show: false,
   });
 
   let title;
@@ -17,12 +17,17 @@ ipcMain.handle("getPageScreenshot", async (e, url) => {
   await offscreenWindow.loadURL(url);
   // screenshot = (await offscreenWindow.webContents.capturePage()).toDataURL();
   title = offscreenWindow.webContents.getTitle();
+  let openGraphTitle = await offscreenWindow.webContents.executeJavaScript(
+    `document.querySelector('meta[property="og:title"]').content;`
+  );
+  let openGraphImgUrl = await offscreenWindow.webContents.executeJavaScript(`document.querySelector('meta[property="og:image"]').content;`);
   offscreenWindow.close();
   offscreenWindow = null;
 
   return {title, 
     url,
-    //  screenshot
+    openGraphImgUrl,
+    openGraphTitle
     };
 });
 
