@@ -11,12 +11,19 @@ a {
 
 .read-item-container {
   background-color: #a5d7e8;
-  border-radius: 20px;
-  margin: 5px;
+  border-radius: 20px 0px 0px 20px;
   display: flex;
   padding-right: 0px;
+  padding-bottom: 10px;
   margin-right: 0px;
   padding-left: 10px;
+  height: 80px;
+  align-items: center;
+}
+
+.read-item-container h2 {
+  margin: 0px;
+  margin-right: 10px;
 }
 
 .app {
@@ -33,6 +40,7 @@ a {
   flex-direction: column;
   height: 100%;
   max-width: 75vw;
+  gap: 10px;
 }
 
 .search-container * {
@@ -81,7 +89,15 @@ a {
   font-size: 32px;
 }
 
+.delete:hover {
+  background-color: rgba(243, 108, 108, 0.85);
+}
+
 .deleteIcon {
-    height: 20px;
-    width: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+.read-item {
+  display: flex;
 }

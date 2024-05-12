@@ -5,19 +5,24 @@ import deleteIcon from "./assets/recycle-bin-icon.svg";
 
 function Item(params) {
   return (
-    <div>
+    <div className="read-item">
       <a href={params.url} target="_blank">
         <div className="read-item-container">
           {/* <img src="${params.imgSrc}" alt="" /> */}
           <h2>{params.title}</h2>
-          <button className="delete">
-            <img src={deleteIcon} alt="" className="deleteIcon"/>
-          </button>
+          
         </div>
       </a>
+      <button
+            className="delete"
+            onClick={() => {
+              params.onDelete(params.url);
+            }}
+          >
+            <img src={deleteIcon} alt="" className="deleteIcon" />
+          </button>
     </div>
   );
 }
 
 export { Item };
-

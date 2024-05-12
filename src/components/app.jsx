@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="app">
       <SearchBar onClick={openModal} />
-      <ItemList toReadItems={toReadItems} />
+      <ItemList toReadItems={toReadItems} onDelete={onDelete}/>
       {showModal ? (
         <Modal onCancel={closeModal} onAddItem={addToReadItem} />
       ) : null}
@@ -42,6 +42,17 @@ function App() {
       save();
     }
     setToReadItems([...toReadItems, item]);
+  }
+
+  function onDelete(url) {
+    const index = storage.findIndex((item)=>{
+      item.url == url;
+    })
+
+    storage.splice(index, 1);
+
+    save();
+    setToReadItems([...storage]);
   }
 }
 
