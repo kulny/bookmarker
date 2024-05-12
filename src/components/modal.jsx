@@ -15,6 +15,8 @@ function Modal(params) {
         onKeyUp={async (e) => {
           if (e.key === "Enter") {
             await manageClick();
+          } else if (e.key === 'Escape') {
+            params.onCancel();
           }
         }}
       />

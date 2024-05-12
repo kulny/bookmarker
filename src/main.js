@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, shell, session} = require("electron");
+const { app, BrowserWindow, ipcMain, shell, session, globalShortcut} = require("electron");
 const windowStateKeeper = require("electron-window-state");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -46,6 +46,12 @@ const createWindow = () => {
 
   mainWindow.webContents.setWindowOpenHandler(({url}) => {
     shell.openExternal(url);
+  })
+
+  globalShortcut.register('CommandOrControl+Alt+Shift+A', () => {
+    mainWindow.webContents.send('open-shortcut-modal');
+    mainWindow.show();
+    mainWindow.focus();
   })
 
   // and load the index.html of the app.

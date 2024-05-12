@@ -8,4 +8,8 @@ contextBridge.exposeInMainWorld("myAPI", {
     console.log("sent message");
     return await ipcRenderer.invoke("getPageScreenshot", url);
   },
+  onShortcutAddItem: (callback) => {
+    // registers callback as the function to run when open-shortcut-modal is called
+    ipcRenderer.on('open-shortcut-modal', callback)
+  },
 });

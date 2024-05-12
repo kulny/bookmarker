@@ -10,9 +10,16 @@ root.render(<App />);
 
 let storage = JSON.parse(localStorage.getItem("to-read-items")) || [];
 
+
+
 function App() {
   const [showModal, setShowModal] = React.useState(false);
   const [toReadItems, setToReadItems] = React.useState(storage);
+
+  window.myAPI.onShortcutAddItem(()=> {
+    console.log('test main to renderer');
+    openModal();
+  });
 
   return (
     <div className="app">
