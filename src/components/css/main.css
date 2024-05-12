@@ -19,6 +19,7 @@ a {
   padding-left: 10px;
   height: 80px;
   align-items: center;
+  min-width: 75vw;
 }
 
 .read-item-container h2 {

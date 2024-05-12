@@ -41,6 +41,7 @@ function App() {
       storage.push(item);
       save();
     }
+    console.log(toReadItems, 'before add new item')
     setToReadItems([...toReadItems, item]);
   }
 
