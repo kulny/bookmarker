@@ -1,5 +1,7 @@
 const { app, BrowserWindow, ipcMain, shell, session, globalShortcut} = require("electron");
 const windowStateKeeper = require("electron-window-state");
+const path = require("path");
+const url = require("url")
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -70,6 +72,7 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  /// yknow, this might not even be used, and I haven't tested it
   session.defaultSession.protocol.registerFileProtocol('static', (request, callback) => {
     const fileUrl = request.url.replace('static://', '');
     const filePath = path.join(app.getAppPath(), '.webpack/renderer', fileUrl);
