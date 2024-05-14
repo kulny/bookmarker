@@ -14,6 +14,7 @@ function SearchBar(params) {
 
   function onChange(e) {
     setSearchVal(e.target.value);
+    params.onSearch(searchVal);
   }
 }
 

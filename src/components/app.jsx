@@ -15,6 +15,8 @@ let storage = JSON.parse(localStorage.getItem("to-read-items")) || [];
 function App() {
   const [showModal, setShowModal] = React.useState(false);
   const [toReadItems, setToReadItems] = React.useState(storage);
+  const [toReadItemsFiltered, setToReadItemsFiltered] = React.useState([]);
+  const [searchActive, setSearchActive] = React.useState(false);
 
   window.myAPI.onShortcutAddItem(()=> {
     console.log('test main to renderer');
@@ -23,13 +25,28 @@ function App() {
 
   return (
     <div className="app">
-      <SearchBar onClick={openModal} />
-      <ItemList toReadItems={toReadItems} onDelete={onDelete}/>
+      <SearchBar onClick={openModal} onSearch={onSearch} />
+      <ItemList toReadItems={searchActive ? toReadItemsFiltered : toReadItems} onDelete={onDelete}/>
       {showModal ? (
         <Modal onCancel={closeModal} onAddItem={addToReadItem} />
       ) : null}
     </div>
   );
+
+  function onSearch(searchVal) {
+    console.log(searchVal);
+   setToReadItemsFiltered( toReadItems.filter((item) => {
+      console.log('title is ', item.title);
+      console.log('ogtitle is ', item.openGraphTitle);
+      return (item.title.toLowerCase().includes(searchVal) || item.openGraphTitle.toLowerCase().includes(searchVal));
+    }));
+    console.log(toReadItemsFiltered);
+    if (searchVal == "") {
+      setSearchActive(false);
+    } else {
+      setSearchActive(true);
+    }
+  }
 
   function openModal() {
     setShowModal(true);
