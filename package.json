@@ -10,6 +10,7 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
+    ,"build": "electron-builder -w"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.4.0",
@@ -24,6 +25,7 @@
     "@vercel/webpack-asset-relocator-loader": "1.7.3",
     "css-loader": "^6.0.0",
     "electron": "30.0.3",
+    "electron-builder": "^24.13.3",
     "node-loader": "^2.0.0",
     "style-loader": "^3.0.0"
   },
