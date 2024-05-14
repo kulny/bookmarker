@@ -34,7 +34,8 @@ ipcMain.handle("getPageScreenshot", async (e, url) => {
 const createWindow = () => {
   let windowState = windowStateKeeper({
     defaultHeight: 650,
-    defaultWidth: 500,
+    defaultWidth: 700,
+    
   });
 
   // Create the browser window.
@@ -43,7 +44,8 @@ const createWindow = () => {
     y: windowState.y,
     width: windowState.width,
     height: windowState.height,
-
+    minWidth: 700,
+    minHeight: 500,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },

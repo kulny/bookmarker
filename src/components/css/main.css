@@ -110,3 +110,8 @@ a {
 .to-read-item-img {
   width: 50%;
 }
+
+::-webkit-scrollbar {
+  display: none;
+  scrollbar-width: none;
+}
