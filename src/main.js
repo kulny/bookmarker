@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, shell, session, globalShortcut} = require("electron");
+const { app, BrowserWindow, ipcMain, shell, session, globalShortcut, Menu } = require("electron");
 const windowStateKeeper = require("electron-window-state");
 const path = require("path");
 const url = require("url")
@@ -68,6 +68,16 @@ const createWindow = () => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+
+  ipcMain.on('show-context-menu', (event, url) => {
+    const template = [{
+      label: "Edit",
+      click: ()=>{event.sender.send('edit-command', url)},
+    }]
+  
+    const menu = Menu.buildFromTemplate(template);
+    menu.popup();
+  })
 };
 
 // This method will be called when Electron has finished
@@ -104,3 +114,4 @@ app.on("window-all-closed", () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+

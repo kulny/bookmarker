@@ -22,9 +22,13 @@ function App() {
     console.log('test main to renderer');
     openModal();
   });
+  window.contextMenuCallbacks.onEditItem((url) => {
+    console.log('on edit item');
+    console.log('with url ', url);
+  })
 
   return (
-    <div className="app">
+    <div className="app" >
       <SearchBar onClick={openModal} onSearch={onSearch} />
       <ItemList toReadItems={searchActive ? toReadItemsFiltered : toReadItems} onDelete={onDelete}/>
       {showModal ? (
@@ -32,6 +36,8 @@ function App() {
       ) : null}
     </div>
   );
+
+ 
 
   function onSearch(searchVal) {
     console.log(searchVal);

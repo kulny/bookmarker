@@ -13,6 +13,7 @@ function ItemList(params) {
             onDelete={params.onDelete}
             imgSrc={item.openGraphImgUrl}
             openGraphTitle={item.openGraphTitle}
+            userTitle={item.userTitle}
           />
         );
       })}

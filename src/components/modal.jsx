@@ -2,6 +2,7 @@ import * as React from "react";
 
 function Modal(params) {
   const [url, setUrl] = React.useState("");
+  const [userTitle, setUserTitle] = React.useState("");
   const [toggleButton, setToggleButton] = React.useState(false);
   return (
     <div id="modal">
@@ -12,12 +13,16 @@ function Modal(params) {
         placeholder="Enter URL"
         value={url}
         onChange={onChange}
-        onKeyUp={async (e) => {
-          if (e.key === "Enter") {
-            await manageClick();
-          } else if (e.key === 'Escape') {
-            params.onCancel();
-          }
+        onKeyUp={inputShortcuts()}
+      />
+      <input
+        type="text"
+        id="userTitle"
+        placeholder="Title"
+        value={userTitle}
+        onKeyUp={inputShortcuts()}
+        onChange={(e) => {
+          setUserTitle(e.target.value);
         }}
       />
       <button
@@ -35,6 +40,16 @@ function Modal(params) {
     </div>
   );
 
+  function inputShortcuts() {
+    return async (e) => {
+      if (e.key === "Enter") {
+        await manageClick();
+      } else if (e.key === "Escape") {
+        params.onCancel();
+      }
+    };
+  }
+
   async function manageClick() {
     // disable this button until logic has finished
     setToggleButton(true);
@@ -42,6 +57,7 @@ function Modal(params) {
     try {
       let info = await window.myAPI.getScreenshot(url);
       /// add to storage / state to build Item element from
+      info.userTitle = userTitle;
       params.onAddItem(info);
 
       // reenable the button

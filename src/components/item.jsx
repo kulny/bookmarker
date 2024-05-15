@@ -6,11 +6,12 @@ import deleteIcon from "./assets/recycle-bin-icon.svg";
 function Item(params) {
   console.log('item params', params);
   return (
-    <div className="read-item">
+    <div className="read-item" onAuxClick={openContextMenu}>
       <a href={params.url} target="_blank">
         <div className="read-item-container">
           {(params.imgSrc != null) ? <img src={params.imgSrc} alt="" className="to-read-item-img"/> : null}
-          <h2>{params.openGraphTitle == null ? params.title : params.openGraphTitle}</h2>
+          <h3>{params.userTitle}</h3>
+          <p>{params.openGraphTitle == null ? params.title : params.openGraphTitle}</p>
           
         </div>
       </a>
@@ -24,6 +25,10 @@ function Item(params) {
           </button>
     </div>
   );
+
+  function openContextMenu() {
+    window.myAPI.openContextMenu(params.url);
+  }
 }
 
 export { Item };
