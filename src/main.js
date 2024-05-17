@@ -14,7 +14,6 @@ ipcMain.handle("getPageScreenshot", async (e, url) => {
   });
 
   let title;
-
   await offscreenWindow.loadURL(url);
   title = offscreenWindow.webContents.getTitle();
   let openGraphTitle = await offscreenWindow.webContents.executeJavaScript(

@@ -5,12 +5,12 @@ const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("myAPI", {
   getScreenshot: async (url) => {
-    console.log("sent message");
     return await ipcRenderer.invoke("getPageScreenshot", url);
   },
   onShortcutAddItem: (callback) => {
     // registers callback as the function to run when open-shortcut-modal is called
-    ipcRenderer.on('open-shortcut-modal', callback)
+    // use .once in callback patterns to prevent memory leaks from multiple listener calls
+    ipcRenderer.once('open-shortcut-modal', callback)
   },
   openContextMenu: (url) => {
     ipcRenderer.send("show-context-menu", url);
@@ -20,8 +20,7 @@ contextBridge.exposeInMainWorld("myAPI", {
 contextBridge.exposeInMainWorld("contextMenuCallbacks", {
   onEditItem: (callback) => {
     // define what we want this to do in the front end where it is used
-    ipcRenderer.on('edit-command', (event, url) => {
-      console.log('event is ', event);
+    ipcRenderer.once('edit-command', (event, url) => {
       callback(url);
     });
   }

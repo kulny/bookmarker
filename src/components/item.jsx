@@ -4,7 +4,6 @@ import deleteIcon from "./assets/recycle-bin-icon.svg";
 // https://www.debugandrelease.com/how-to-load-images-in-electron-applications/
 
 function Item(params) {
-  console.log('item params', params);
   return (
     <div className="read-item" onAuxClick={openContextMenu}>
       <a href={params.url} target="_blank">
