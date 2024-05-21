@@ -1,8 +1,6 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
-
-/* ! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com */
+/*
+! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com
+*/
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -633,6 +631,10 @@ video {
   width: 100vw;
 }
 
+.w-9\/12 {
+  width: 75%;
+}
+
 .max-w-xl {
   max-width: 36rem;
 }
@@ -780,174 +782,6 @@ body {
   display: none;
   scrollbar-width: none;
 }
-
-/* 
-
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.read-item-container {
-  background-color: #a5d7e8;
-  border-radius: 20px 0px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  padding-right: 0px;
-  padding-bottom: 10px;
-  margin-right: 0px;
-  padding-top: 10px;
-  padding-left: 10px;
-  min-height: 80px;
-  align-items: center;
-  justify-content: center;
-  min-width: 75vw;
-}
-
-.read-item-container:hover {
-  background-color: #576cbc;
-}
-
-.read-item-container h2 {
-  margin: 0px;
-  margin-right: 10px;
-}
-
-.app {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  align-items: center;
-  justify-content: center;
-  margin-top: 25px;
-}
-
-.item-list-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  max-width: 75vw;
-  gap: 10px;
-}
-
-.search-container * {
-  font-size: 24px;
-}
-
-.search-container {
-  margin-bottom: 25px;
-}
-
-#search {
-  border-radius: 10px;
-  padding: 5px;
-  background-color: #a5d7e8;
-  border: 3px solid transparent;
-}
-
-#search:hover {
-  border: 3px solid #576cbc;
-}
-
-#search:focus {
-  border: 3px solid #576cbc;
-  outline: none;
-}
-
-#show-modal {
-  padding: 5px;
-  border-radius: 10px;
-  margin-right: 5px;
-  width: 50px;
-  background-color: #a5d7e8;
-  border: none;
-}
-
-#show-modal:hover {
-  background-color: #576cbc;
-}
-
-.delete {
-  background-color: rgba(255, 0, 0, 0.85);
-  margin: 0px;
-  padding: 5px;
-  border: none;
-  border-radius: 0px 20px 20px 0px;
-  font-size: 32px;
-  cursor: pointer;
-}
-
-.delete:hover {
-  background-color: rgba(243, 108, 108, 0.85);
-}
-
-.deleteIcon {
-  height: 20px;
-  width: 20px;
-}
-
-.read-item {
-  display: flex;
-}
-
-.to-read-item-img {
-  width: 50%;
-}
-
-::-webkit-scrollbar {
-  display: none;
-  scrollbar-width: none;
-}
-
-#modal {
-  position: fixed;
-  top: 0px;
-  background:
-       linear-gradient(
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0.7)
-  );
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex-direction: column;
-} 
-
-#modal input {
-  border: none;
-  font-size: 16px;
-  padding: 5px;
-}
-
-.modal-background {
-  height: 35%;
-  width: 35%;
-  background-color: #576cbc;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 20px;
-  color: white;
-}
-
-.modal-background h2 {
-  margin: 0px;
-  padding: 0px;
-}
-
-.modal-background button {
-  border: none;
-  margin: 5px;
-  border-radius: 10px;
-  padding: 5px;
-  cursor: pointer;
-} */
 
 .hover\:border-blue3:hover {
   --tw-border-opacity: 1;

@@ -24,12 +24,12 @@ function Item(params) {
         </div>
       </a>
       <button
-        className="delete bg-red-500 m-0 p-1 border-none rounded-r-lg text-3xl cursor-pointer hover:bg-red-800"
+        className="delete bg-red-500 m-0 p-2 border-none rounded-r-lg text-3xl cursor-pointer hover:bg-red-800 flex items-center justify-center"
         onClick={() => {
           params.onDelete(params.url);
         }}
       >
-        <img src={deleteIcon} alt="" className="deleteIcon" />
+        <img src={deleteIcon} alt="" className="deleteIcon w-9/12" />
       </button>
     </div>
   );
