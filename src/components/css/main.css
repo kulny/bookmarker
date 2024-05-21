@@ -8,12 +8,20 @@
 
 @import "tailwindcss/utilities";
 
-/* 
+
 body {
   background-color: #0b2447;
   padding: 0px;
   margin: 0px;
 }
+
+::-webkit-scrollbar {
+  display: none;
+  scrollbar-width: none;
+}
+
+/* 
+
 
 a {
   color: inherit;

@@ -3,10 +3,13 @@ import * as React from "react";
 function Modal(params) {
   const [toggleButton, setToggleButton] = React.useState(false);
 
+  const inputStyle = "border-none text-base p-1"
+  const buttonStyle = "border-none m-1 rounded-lg p-1 cursor-pointer"
+
   return (
-    <div id="modal">
-      <div className="modal-background">
-        <h2>Add a new item</h2>
+    <div id="modal" className="fixed top-0 bg-modalBg w-screen h-full flex justify-center items-center gap-2 flex-col">
+      <div className="modal-background h-2/6 w-2/6 bg-blue3 flex flex-col justify-center items-center gap-2 rounded-lg text-white p-2">
+        <h2 className="m-0 p-0">Add a new item</h2>
         <input
           type="text"
           id="url"
@@ -15,6 +18,7 @@ function Modal(params) {
           value={params.url}
           onChange={params.onChangeUrl}
           onKeyUp={inputShortcuts()}
+          className={inputStyle}
         />
         <input
           type="text"
@@ -23,6 +27,8 @@ function Modal(params) {
           value={params.userTitle}
           onKeyUp={inputShortcuts()}
           onChange={params.onChangeUserTitle}
+          className={inputStyle}
+
         />
         <div className="modal-button-container">
           <button
@@ -31,10 +37,14 @@ function Modal(params) {
             onClick={async () => {
               await manageClick();
             }}
+            className={buttonStyle}
           >
             Add Item
           </button>
-          <button id="close-modal" onClick={params.onCancel}>
+          <button id="close-modal" onClick={params.onCancel}
+          
+          className={buttonStyle}
+          >
             Cancel
           </button>
         </div>

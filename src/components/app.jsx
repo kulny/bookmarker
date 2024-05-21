@@ -45,8 +45,7 @@ function App() {
   });
 
   return (
-    <div className="app">
-      <p className="bg-red-600">test</p>
+    <div className="app flex flex-col w-screen items-center justify-center mt-6 ">
       <SearchBar onClick={openModal} onSearch={onSearch} />
       <ItemList
         toReadItems={searchActive ? toReadItemsFiltered : toReadItems}
