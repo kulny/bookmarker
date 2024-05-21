@@ -84,11 +84,11 @@ const createWindow = () => {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   /// yknow, this might not even be used, and I haven't tested it
-  session.defaultSession.protocol.registerFileProtocol('static', (request, callback) => {
-    const fileUrl = request.url.replace('static://', '');
-    const filePath = path.join(app.getAppPath(), '.webpack/renderer', fileUrl);
-    callback(filePath);
-  })
+  // session.defaultSession.protocol.registerFileProtocol('static', (request, callback) => {
+  //   const fileUrl = request.url.replace('static://', '');
+  //   const filePath = path.join(app.getAppPath(), '.webpack/renderer', fileUrl);
+  //   callback(filePath);
+  // })
 
 
   createWindow();

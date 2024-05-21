@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { SearchBar } from "./search.jsx";
 import { ItemList } from "./itemList.jsx";
 import { Modal } from "./modal.jsx";
-import "./css/main.css";
+import "./css/main_out.css";
 
 const root = createRoot(document.getElementById("root"));
 root.render(<App />);
@@ -46,6 +46,7 @@ function App() {
 
   return (
     <div className="app">
+      <p className="bg-red-600">test</p>
       <SearchBar onClick={openModal} onSearch={onSearch} />
       <ItemList
         toReadItems={searchActive ? toReadItemsFiltered : toReadItems}

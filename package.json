@@ -9,8 +9,8 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
-    ,"build": "electron-builder -w"
+    "lint": "echo \"No linting configured\"",
+    "build": "electron-builder -w"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.4.0",
@@ -23,11 +23,14 @@
     "@electron-forge/plugin-webpack": "^7.4.0",
     "@electron/fuses": "^1.8.0",
     "@vercel/webpack-asset-relocator-loader": "1.7.3",
+    "autoprefixer": "^10.4.19",
     "css-loader": "^6.0.0",
     "electron": "30.0.3",
     "electron-builder": "^24.13.3",
     "node-loader": "^2.0.0",
-    "style-loader": "^3.0.0"
+    "postcss-loader": "^8.1.1",
+    "style-loader": "^3.0.0",
+    "tailwindcss": "^3.4.3"
   },
   "keywords": [],
   "author": {
@@ -40,7 +43,7 @@
     "@coreui/icons-react": "^2.2.1",
     "electron-squirrel-startup": "^1.0.0"
   },
-  "build" : {
+  "build": {
     "appId": "com.kodrick.bookmarker",
     "win": {
       "target": "zip"
