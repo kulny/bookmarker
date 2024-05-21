@@ -66,7 +66,7 @@ const createWindow = () => {
   windowState.manage(mainWindow);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   ipcMain.on('show-context-menu', (event, url) => {
     const template = [{
